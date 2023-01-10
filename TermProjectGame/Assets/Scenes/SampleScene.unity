@@ -191,7 +191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818898239}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.61, y: -4.4, z: -0.15978992}
+  m_LocalPosition: {x: -0.01, y: -4.4, z: -0.15978992}
   m_LocalScale: {x: 31.480312, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -257,6 +257,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 321957395852897070, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2d0678bbfba167447b0b0d1ee8d35767, type: 2}
     - target: {fileID: 1791183686409416062, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -267,7 +271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2534982593821599713, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.8144236
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 2534982593821599713, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -309,13 +313,17 @@ PrefabInstance:
       propertyPath: m_LinearDrag
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5915044608667133894, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6303085706571723949, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
       propertyPath: jumpSpeed
-      value: 4.5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6303085706571723949, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
       propertyPath: smoothTime
-      value: 0.15
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6303085706571723949, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
       propertyPath: playerCollider

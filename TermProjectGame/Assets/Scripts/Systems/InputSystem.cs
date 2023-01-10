@@ -8,9 +8,17 @@ namespace Systems
     public class InputSystem : MonoBehaviour
     {
         private PlayerController player;
+        private bool jumpPressed;
         public void Init(PlayerController player)
         {
             this.player = player;
+            jumpPressed = false;
+        }
+
+        private void Update()
+        {
+            if(Input.GetButtonDown("Jump"))
+                jumpPressed = true;
         }
 
         private void FixedUpdate()
@@ -26,9 +34,10 @@ namespace Systems
             }
             else
                 player.Movement.Move(0, player.Speed);
-            if(Input.GetButton("Jump"))
+            if(jumpPressed)
             {
                 player.Movement.Jump();
+                jumpPressed = false;
             }
         }
     }
