@@ -26,6 +26,10 @@ namespace Systems
             }
             else
                 player.Movement.Move(0, player.Speed);
+            if(Input.GetButton("Jump"))
+            {
+                player.Movement.Jump();
+            }
         }
     }
 }
