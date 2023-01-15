@@ -134,11 +134,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7678e8aa10183e346a6508963090e8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &416246609 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 321957395852897070, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
-  m_PrefabInstance: {fileID: 1044917428922158938}
+--- !u!1 &1116134869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1116134870}
+  m_Layer: 0
+  m_Name: Checkpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1116134870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116134869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.27, y: -3.18, z: -0.13800651}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1818898239
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,10 +283,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 321957395852897070, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 2d0678bbfba167447b0b0d1ee8d35767, type: 2}
     - target: {fileID: 1791183686409416062, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -275,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2534982593821599713, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.4137447
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2534982593821599713, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -309,38 +331,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5915044608667133894, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
-      propertyPath: m_LinearDrag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5915044608667133894, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6303085706571723949, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
-      propertyPath: jumpSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6303085706571723949, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
-      propertyPath: smoothTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6303085706571723949, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
-      propertyPath: playerCollider
-      value: 
-      objectReference: {fileID: 416246609}
-    - target: {fileID: 6303085706571723949, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
-      propertyPath: jumpMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 6303085706571723949, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
-      propertyPath: maxGoundCheckDistance
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8305936421348268057, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
+      propertyPath: initialPosition
+      value: 
+      objectReference: {fileID: 1116134870}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
 --- !u!1001 &1446485258371927476
@@ -350,6 +344,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1211672637605373080, guid: 4f6614416132a5644bdab42f61ea046d, type: 3}
+      propertyPath: currentCheckpoint
+      value: 
+      objectReference: {fileID: 1116134870}
     - target: {fileID: 1446485257991047512, guid: 4f6614416132a5644bdab42f61ea046d, type: 3}
       propertyPath: m_Name
       value: App

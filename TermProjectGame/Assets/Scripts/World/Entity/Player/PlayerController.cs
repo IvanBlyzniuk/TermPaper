@@ -7,13 +7,21 @@ namespace World.Entity.Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField]
-        private float speed;
-
-        [SerializeField]
         private PlayerMovement movement;
-
-        public float Speed => speed;
+        [SerializeField]
+        private Transform initialPosition;
         public PlayerMovement Movement => movement;
+        public Transform InitialPosition { get => initialPosition; set => initialPosition = value; }
+
+        public void ResetPosition()
+        {
+            if(InitialPosition == null)
+            {
+                Debug.Log(gameObject.name);
+                return;
+            }
+            transform.position = InitialPosition.position;
+        }
     }
 }
 

@@ -13,6 +13,8 @@ namespace World.Entity.Player
         [SerializeField]
         private float jumpSpeed;
         [SerializeField]
+        private float moveSpeed;
+        [SerializeField]
         private LayerMask jumpMask;
         [SerializeField]
         private float maxGoundCheckDistance;
@@ -21,9 +23,9 @@ namespace World.Entity.Player
         [SerializeField]
         private BoxCollider2D playerCollider;
 
-        public void Move(float speedMultiplier, float speed)
+        public void Move(float speedMultiplier)
         {
-            Vector2 target = new Vector2(speed * speedMultiplier, rigidBody.velocity.y);
+            Vector2 target = new Vector2(moveSpeed * speedMultiplier, rigidBody.velocity.y);
 
             rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, target, ref changeVelocity, smoothTime);
         }

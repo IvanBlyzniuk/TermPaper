@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2534982593821599713}
   - component: {fileID: 4366138556508056211}
+  - component: {fileID: -5821452803264864215}
   - component: {fileID: 8305936421348268057}
   - component: {fileID: 6303085706571723949}
   - component: {fileID: 5915044608667133894}
   - component: {fileID: 321957395852897070}
   m_Layer: 7
-  m_Name: Player
+  m_Name: Clone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1697462796, guid: 859a93923b98cd94abb60a09ff2f5ca1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.28324133, g: 0.39000013, b: 0.8962264, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -88,6 +89,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5821452803264864215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791183686409416062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f789e5ac65362e84f8315b2f95b84778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseController: {fileID: 8305936421348268057}
 --- !u!114 &8305936421348268057
 MonoBehaviour:
   m_ObjectHideFlags: 0

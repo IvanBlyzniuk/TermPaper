@@ -7,11 +7,15 @@ namespace Systems
 {
     public class InputSystem : MonoBehaviour
     {
+        private CloneSystem cloneSystem;
         private PlayerController player;
         private bool jumpPressed;
-        public void Init(PlayerController player)
+        private bool interractPressed;
+        private bool resetPressed;
+        public void Init(PlayerController player, CloneSystem cloneSystem)
         {
             this.player = player;
+            this.cloneSystem = cloneSystem;
             jumpPressed = false;
         }
 
@@ -19,6 +23,10 @@ namespace Systems
         {
             if(Input.GetButtonDown("Jump"))
                 jumpPressed = true;
+            if(Input.GetButtonDown("Reset"))
+                resetPressed = true;
+            if (Input.GetButtonDown("Interract"))
+                interractPressed = true;
         }
 
         private void FixedUpdate()
@@ -26,18 +34,36 @@ namespace Systems
             float horizontalInput = Input.GetAxis("Horizontal");
             if (horizontalInput > 0)
             {
-                player.Movement.Move(1,player.Speed);
+                player.Movement.Move(1);
+                cloneSystem.Move(1);
             }
             else if(horizontalInput < 0)
             {
-                player.Movement.Move(-1, player.Speed);
+                player.Movement.Move(-1);
+                cloneSystem.Move(-1);
             }
             else
-                player.Movement.Move(0, player.Speed);
-            if(jumpPressed)
+            {
+                player.Movement.Move(0);
+                cloneSystem.Move(0);
+            }
+                
+            if (jumpPressed)
             {
                 player.Movement.Jump();
+                cloneSystem.Jump();
                 jumpPressed = false;
+            }
+            if (resetPressed)
+            {
+                cloneSystem.ResetClones();
+                player.ResetPosition();
+                resetPressed = false;
+            }
+            if (interractPressed)
+            {
+                //TODO interract
+                interractPressed = false;
             }
         }
     }

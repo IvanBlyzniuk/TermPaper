@@ -10,9 +10,12 @@ public class App : MonoBehaviour
     private ObjectsContainer objectsContainer;
     [SerializeField]
     private InputSystem inputSystem;
+    [SerializeField]
+    private CloneSystem cloneSystem;
 
     private void Awake()
     {
-        inputSystem.Init(objectsContainer.Player);
+        inputSystem.Init(objectsContainer.Player,cloneSystem);
+        cloneSystem.Init();
     }
 }
