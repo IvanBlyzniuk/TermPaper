@@ -276,6 +276,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1882077357 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8717236988496104375, guid: 2e5a3b818f4d68e4fb60e307137edb5d, type: 3}
+  m_PrefabInstance: {fileID: 2037795977009069271}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &1882077359
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882077357}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 23.02812, y: 19.77745}
+      - {x: -38.115227, y: 17.649952}
+      - {x: -38.612446, y: -9.834113}
+      - {x: 23.156147, y: -10.190025}
 --- !u!1001 &1044917428922158938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -331,12 +365,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6303085706571723949, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
+      propertyPath: movementParams
+      value: 
+      objectReference: {fileID: 11400000, guid: 35d32927ce14eea48a0bee45104cc732, type: 2}
     - target: {fileID: 8305936421348268057, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
       propertyPath: initialPosition
       value: 
       objectReference: {fileID: 1116134870}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
+--- !u!4 &1044917428922158939 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2534982593821599713, guid: a4abab2cec92d604b87015c31bd1e8c8, type: 3}
+  m_PrefabInstance: {fileID: 1044917428922158938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1446485258371927476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -461,6 +504,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: World
       objectReference: {fileID: 0}
+    - target: {fileID: 8717236988496104375, guid: 2e5a3b818f4d68e4fb60e307137edb5d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e5a3b818f4d68e4fb60e307137edb5d, type: 3}
 --- !u!114 &2037795977009069272 stripped
@@ -481,6 +528,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1002765858, guid: d2358b5a6bb11fe49b83399c14800d71, type: 3}
+      propertyPath: m_XDamping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1002765858, guid: d2358b5a6bb11fe49b83399c14800d71, type: 3}
+      propertyPath: m_MaximumOrthoSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1002765858, guid: d2358b5a6bb11fe49b83399c14800d71, type: 3}
+      propertyPath: m_MinimumOrthoSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858134302, guid: d2358b5a6bb11fe49b83399c14800d71, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858134303, guid: d2358b5a6bb11fe49b83399c14800d71, type: 3}
+      propertyPath: m_Damping
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858134303, guid: d2358b5a6bb11fe49b83399c14800d71, type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 1882077359}
+    - target: {fileID: 1907015411, guid: d2358b5a6bb11fe49b83399c14800d71, type: 3}
+      propertyPath: m_Targets.Array.data[0].target
+      value: 
+      objectReference: {fileID: 1044917428922158939}
+    - target: {fileID: 6701655659738798413, guid: d2358b5a6bb11fe49b83399c14800d71, type: 3}
+      propertyPath: orthographic size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701655659738798514, guid: d2358b5a6bb11fe49b83399c14800d71, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.9759626
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701655659738798514, guid: d2358b5a6bb11fe49b83399c14800d71, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.009981
+      objectReference: {fileID: 0}
     - target: {fileID: 6701655660003586880, guid: d2358b5a6bb11fe49b83399c14800d71, type: 3}
       propertyPath: m_Name
       value: Cameras

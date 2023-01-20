@@ -128,13 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8967398b817d5d64dac5cfcc640151e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothTime: 0.1
-  jumpSpeed: 6
-  moveSpeed: 5
+  movementParams: {fileID: 11400000, guid: 35d32927ce14eea48a0bee45104cc732, type: 2}
   jumpMask:
     serializedVersion: 2
     m_Bits: 64
-  maxGoundCheckDistance: 0.1
   rigidBody: {fileID: 5915044608667133894}
   playerCollider: {fileID: 321957395852897070}
 --- !u!50 &5915044608667133894
@@ -154,7 +151,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4

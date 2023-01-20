@@ -9,15 +9,9 @@ namespace World.Entity.Player
     {
         private Vector2 changeVelocity = Vector2.zero;
         [SerializeField]
-        private float smoothTime;
-        [SerializeField]
-        private float jumpSpeed;
-        [SerializeField]
-        private float moveSpeed;
+        private PlayerMovementParamsSO movementParams;
         [SerializeField]
         private LayerMask jumpMask;
-        [SerializeField]
-        private float maxGoundCheckDistance;
         [SerializeField]
         private Rigidbody2D rigidBody;
         [SerializeField]
@@ -25,20 +19,20 @@ namespace World.Entity.Player
 
         public void Move(float speedMultiplier)
         {
-            Vector2 target = new Vector2(moveSpeed * speedMultiplier, rigidBody.velocity.y);
+            Vector2 target = new Vector2(movementParams.moveSpeed * speedMultiplier, rigidBody.velocity.y);
 
-            rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, target, ref changeVelocity, smoothTime);
+            rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, target, ref changeVelocity, movementParams.smoothTime);
         }
 
         public void Jump()
         {
             if(GoundCheck())
-                rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, movementParams.jumpSpeed);
         }
 
         private bool GoundCheck()
         {
-            return Physics2D.BoxCast(transform.position, playerCollider.size, 0, Vector2.down,maxGoundCheckDistance,jumpMask);
+            return Physics2D.BoxCast(transform.position, playerCollider.size, 0, Vector2.down, movementParams.maxGroundCheckDistance, jumpMask);
         }
     }
 }
