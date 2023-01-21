@@ -29,21 +29,18 @@ namespace World.Entity.Clone
             }
             byte fullInput = inputs[frameNum];
             if(ContainsInput(fullInput, InputConsts.MoveRightByte))
-            {
                 baseController.Movement.Move(1);
-            }
             else if (ContainsInput(fullInput, InputConsts.MoveLeftByte))
-            {
                 baseController.Movement.Move(-1);
-            }
             else
-            {
                 baseController.Movement.Move(0);
-            }
+
             if(ContainsInput(fullInput, InputConsts.JumpByte))
-            {
                 baseController.Movement.Jump();
-            }
+
+            if(ContainsInput(fullInput, InputConsts.JumpDownByte))
+                baseController.Movement.JumpDown();
+
             frameNum++;
         }
 

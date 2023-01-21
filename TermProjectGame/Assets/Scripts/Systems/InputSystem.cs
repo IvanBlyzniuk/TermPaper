@@ -10,7 +10,7 @@ namespace Systems
         private CloneSystem cloneSystem;
         private PlayerController player;
         private bool jumpPressed;
-        private bool interractPressed;
+        private bool interactPressed;
         private bool resetPressed;
         public void Init(PlayerController player, CloneSystem cloneSystem)
         {
@@ -26,7 +26,7 @@ namespace Systems
             if(Input.GetButtonDown("Reset"))
                 resetPressed = true;
             if (Input.GetButtonDown("Interract"))
-                interractPressed = true;
+                interactPressed = true;
         }
 
         private void FixedUpdate()
@@ -50,8 +50,16 @@ namespace Systems
                 
             if (jumpPressed)
             {
-                player.Movement.Jump();
-                cloneSystem.Jump();
+                if(Input.GetAxis("Vertical") >= 0)
+                {
+                    player.Movement.Jump();
+                    cloneSystem.Jump();
+                }
+                else
+                {
+                    player.Movement.JumpDown();
+                    cloneSystem.JumpDown();
+                }
                 jumpPressed = false;
             }
             if (resetPressed)
@@ -60,10 +68,10 @@ namespace Systems
                 player.ResetPosition();
                 resetPressed = false;
             }
-            if (interractPressed)
+            if (interactPressed)
             {
-                //TODO interract
-                interractPressed = false;
+                //TODO interact
+                interactPressed = false;
             }
         }
     }

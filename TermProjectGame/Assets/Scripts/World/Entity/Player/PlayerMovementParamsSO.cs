@@ -11,6 +11,7 @@ namespace World.Entity.Player
         public float jumpSpeed;
         public float moveSpeed;
         public float maxGroundCheckDistance;
+        public LayerMask jumpMask;
     }
 }
 

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: PlayerMovementParams
   m_EditorClassIdentifier: 
   smoothTime: 0.1
-  jumpSpeed: 6
+  jumpSpeed: 7
   moveSpeed: 5
   maxGroundCheckDistance: 0.1
+  jumpMask:
+    serializedVersion: 2
+    m_Bits: 576

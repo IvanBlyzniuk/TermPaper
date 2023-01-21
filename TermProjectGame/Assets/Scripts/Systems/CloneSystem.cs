@@ -25,6 +25,11 @@ namespace Systems
             currentFrameInputs = 0;
         }
 
+        public void JumpDown()
+        {
+            currentFrameInputs |= InputConsts.JumpDownByte;
+        }
+
         public void Jump()
         {
             currentFrameInputs |= InputConsts.JumpByte;
