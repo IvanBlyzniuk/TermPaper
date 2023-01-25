@@ -12,6 +12,8 @@ namespace World.Entity.Player
         public float moveSpeed;
         public float maxGroundCheckDistance;
         public LayerMask jumpMask;
+        public PhysicsMaterial2D noFrictionMaterial;
+        public PhysicsMaterial2D normalFrictionMaterial;
     }
 }
 

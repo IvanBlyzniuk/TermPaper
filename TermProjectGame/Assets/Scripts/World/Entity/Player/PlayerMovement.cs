@@ -19,15 +19,48 @@ namespace World.Entity.Player
 
         public void Move(float speedMultiplier)
         {
-            Vector2 target = new Vector2(movementParams.moveSpeed * speedMultiplier, rigidBody.velocity.y);
-
-            rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, target, ref changeVelocity, movementParams.smoothTime);
+            Vector2 target;
+            RaycastHit2D groundCheckHit = GroundCheck();
+            if (speedMultiplier != 0)
+            {
+                target = new Vector2(movementParams.moveSpeed * speedMultiplier, rigidBody.velocity.y);
+                rigidBody.sharedMaterial = movementParams.noFrictionMaterial;
+                if (groundCheckHit && groundCheckHit.collider.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                {
+                    target = Vector2.Perpendicular(-groundCheckHit.normal).normalized * movementParams.moveSpeed * speedMultiplier;
+                    Debug.DrawRay(transform.position, target, Color.green);
+                    rigidBody.velocity = target;
+                }
+                else
+                {
+                    rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, target, ref changeVelocity, movementParams.smoothTime);
+                }
+            }
+            else
+            {
+                rigidBody.sharedMaterial = movementParams.normalFrictionMaterial;
+                if (!groundCheckHit)
+                {
+                    target = new Vector2(movementParams.moveSpeed * speedMultiplier, rigidBody.velocity.y);
+                }
+                else if (groundCheckHit.collider.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                {
+                    target = new Vector2(0, 0);
+                }
+                else
+                    target = rigidBody.velocity;
+                rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, target, ref changeVelocity, movementParams.smoothTime);
+            }
+            //Debug.Log(rigidBody.velocity.magnitude);
         }
 
         public void Jump()
         {
             if(GroundCheck())
+            {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, movementParams.jumpSpeed);
+            }
+                
         }
 
         public void JumpDown()

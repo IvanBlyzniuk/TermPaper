@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 713e6d6195de909468e3e0c06d328b87, type: 3}
   m_Name: PlayerMovementParams
   m_EditorClassIdentifier: 
-  smoothTime: 0.1
+  smoothTime: 0.15
   jumpSpeed: 7
   moveSpeed: 5
   maxGroundCheckDistance: 0.1
   jumpMask:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 1600
+  noFrictionMaterial: {fileID: 6200000, guid: d8ba97d6aecba0344bf0f8e8291c6276, type: 2}
+  normalFrictionMaterial: {fileID: 6200000, guid: 2d0678bbfba167447b0b0d1ee8d35767, type: 2}

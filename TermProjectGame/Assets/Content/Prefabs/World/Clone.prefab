@@ -129,9 +129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementParams: {fileID: 11400000, guid: 35d32927ce14eea48a0bee45104cc732, type: 2}
-  jumpMask:
-    serializedVersion: 2
-    m_Bits: 64
   rigidBody: {fileID: 5915044608667133894}
   playerCollider: {fileID: 321957395852897070}
 --- !u!50 &5915044608667133894
@@ -164,7 +161,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1791183686409416062}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 2d0678bbfba167447b0b0d1ee8d35767, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
