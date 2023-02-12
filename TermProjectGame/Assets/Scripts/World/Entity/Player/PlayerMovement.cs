@@ -7,6 +7,7 @@ namespace World.Entity.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
+        private int stairsCollisionsCount = 0;
         private List<Collider2D> ignoredPlatforms = new List<Collider2D>();
         private Vector2 changeVelocity = Vector2.zero;
 
@@ -25,7 +26,7 @@ namespace World.Entity.Player
             {
                 target = new Vector2(movementParams.moveSpeed * speedMultiplier, rigidBody.velocity.y);
                 rigidBody.sharedMaterial = movementParams.noFrictionMaterial;
-                if (groundCheckHit && groundCheckHit.collider.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                if (stairsCollisionsCount > 0  && groundCheckHit && groundCheckHit.collider.gameObject.layer == LayerMask.NameToLayer("Stairs"))
                 {
                     target = Vector2.Perpendicular(-groundCheckHit.normal).normalized * movementParams.moveSpeed * speedMultiplier;
                     Debug.DrawRay(transform.position, target, Color.green);
@@ -77,11 +78,17 @@ namespace World.Entity.Player
 
         private RaycastHit2D GroundCheck()
         {
-            return Physics2D.BoxCast(transform.position, playerCollider.size, 0, Vector2.down, movementParams.maxGroundCheckDistance, movementParams.jumpMask);
+            Vector2 pos = new Vector2(transform.position.x, transform.position.y - 0.45f * playerCollider.size.y);
+            Vector2 size = new Vector2(playerCollider.size.x, 0.1f * playerCollider.size.y);
+            return Physics2D.BoxCast(pos, size, 0, Vector2.down, movementParams.maxGroundCheckDistance, movementParams.jumpMask);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if(collision.gameObject.layer == LayerMask.NameToLayer("Stairs") && collision.enabled)
+            {
+                stairsCollisionsCount++;
+            }
             if (ignoredPlatforms.Count > 0)
             {
                 foreach (var platform in ignoredPlatforms)
@@ -89,6 +96,14 @@ namespace World.Entity.Player
                     Physics2D.IgnoreCollision(playerCollider, platform, false);
                 }
                 ignoredPlatforms.Clear();
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Stairs") && collision.enabled)
+            {
+                stairsCollisionsCount--;
             }
         }
     }

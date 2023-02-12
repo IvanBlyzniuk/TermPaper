@@ -70,7 +70,8 @@ namespace Systems
             }
             if (interactPressed)
             {
-                //TODO interact
+                player.Interactor.Interract();
+                //cloneSystem.Interract(); TODO
                 interactPressed = false;
             }
         }

@@ -9,8 +9,12 @@ namespace World.Entity.Player
         [SerializeField]
         private PlayerMovement movement;
         [SerializeField]
+        private PlayerInteractor interactor;
+        [SerializeField]
         private Transform initialPosition;
+        
         public PlayerMovement Movement => movement;
+        public PlayerInteractor Interactor => interactor;
         public Transform InitialPosition { get => initialPosition; set => initialPosition = value; }
 
         public void ResetPosition()
