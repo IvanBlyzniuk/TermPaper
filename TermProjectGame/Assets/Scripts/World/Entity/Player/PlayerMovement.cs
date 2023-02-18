@@ -36,6 +36,10 @@ namespace World.Entity.Player
                 {
                     rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, target, ref changeVelocity, movementParams.smoothTime);
                 }
+                if (speedMultiplier < 0)
+                    gameObject.transform.localScale = new Vector3(-1,1,1);
+                else
+                    gameObject.transform.localScale = new Vector3(1, 1, 1);
             }
             else
             {
