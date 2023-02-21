@@ -43,6 +43,11 @@ namespace Systems
                 currentFrameInputs |= InputConsts.MoveLeftByte;
         }
 
+        public void Interract()
+        {
+            currentFrameInputs |= InputConsts.InterractByte;
+        }
+
         public void ResetClones()
         {
             CloneController currentClone = Instantiate(clonePrefab).GetComponent<CloneController>();
@@ -54,6 +59,8 @@ namespace Systems
             }
             currentAttemptInputs = new List<byte>();
         }
+
+        
 
         private void FixedUpdate()
         {

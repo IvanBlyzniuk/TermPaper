@@ -10,6 +10,7 @@ namespace World.Entity.Player
         private int stairsCollisionsCount = 0;
         private List<Collider2D> ignoredPlatforms = new List<Collider2D>();
         private Vector2 changeVelocity = Vector2.zero;
+        private bool facingRight = true;
 
         [SerializeField]
         private PlayerMovementParamsSO movementParams;
@@ -17,6 +18,8 @@ namespace World.Entity.Player
         private Rigidbody2D rigidBody;
         [SerializeField]
         private BoxCollider2D playerCollider;
+
+        public bool FacingRight => facingRight;
 
         public void Move(float speedMultiplier)
         {
@@ -36,10 +39,10 @@ namespace World.Entity.Player
                 {
                     rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, target, ref changeVelocity, movementParams.smoothTime);
                 }
-                if (speedMultiplier < 0)
-                    gameObject.transform.localScale = new Vector3(-1,1,1);
-                else
-                    gameObject.transform.localScale = new Vector3(1, 1, 1);
+                //if (speedMultiplier < 0)
+                    
+                //else
+                    
             }
             else
             {
@@ -57,6 +60,18 @@ namespace World.Entity.Player
                 rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, target, ref changeVelocity, movementParams.smoothTime);
             }
             //Debug.Log(rigidBody.velocity.magnitude);
+        }
+
+        public void TurnLeft()
+        {
+            gameObject.transform.localScale = new Vector3(-1, 1, 1);
+            facingRight = false;
+        }
+
+        public void TurnRight()
+        {
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            facingRight = true;
         }
 
         public void Jump()

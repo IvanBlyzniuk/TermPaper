@@ -18,6 +18,6 @@ MonoBehaviour:
   maxGroundCheckDistance: 0.1
   jumpMask:
     serializedVersion: 2
-    m_Bits: 1600
+    m_Bits: 5696
   noFrictionMaterial: {fileID: 6200000, guid: d8ba97d6aecba0344bf0f8e8291c6276, type: 2}
   normalFrictionMaterial: {fileID: 6200000, guid: 2d0678bbfba167447b0b0d1ee8d35767, type: 2}

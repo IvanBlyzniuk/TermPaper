@@ -34,17 +34,17 @@ namespace Systems
             float horizontalInput = Input.GetAxis("Horizontal");
             if (horizontalInput > 0)
             {
-                player.Movement.Move(1);
+                player.Move(1);
                 cloneSystem.Move(1);
             }
             else if(horizontalInput < 0)
             {
-                player.Movement.Move(-1);
+                player.Move(-1);
                 cloneSystem.Move(-1);
             }
             else
             {
-                player.Movement.Move(0);
+                player.Move(0);
                 cloneSystem.Move(0);
             }
                 
@@ -52,12 +52,12 @@ namespace Systems
             {
                 if(Input.GetAxis("Vertical") >= 0)
                 {
-                    player.Movement.Jump();
+                    player.Jump();
                     cloneSystem.Jump();
                 }
                 else
                 {
-                    player.Movement.JumpDown();
+                    player.JumpDown();
                     cloneSystem.JumpDown();
                 }
                 jumpPressed = false;
@@ -71,7 +71,7 @@ namespace Systems
             if (interactPressed)
             {
                 player.Interactor.Interract();
-                //cloneSystem.Interract(); TODO
+                cloneSystem.Interract();
                 interactPressed = false;
             }
         }

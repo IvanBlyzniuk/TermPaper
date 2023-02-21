@@ -24,22 +24,25 @@ namespace World.Entity.Clone
         {
             if(frameNum >= inputs.Count)
             {
-                baseController.Movement.Move(0);
+                baseController.Move(0);
                 return;
             }
             byte fullInput = inputs[frameNum];
             if(ContainsInput(fullInput, InputConsts.MoveRightByte))
-                baseController.Movement.Move(1);
+                baseController.Move(1);
             else if (ContainsInput(fullInput, InputConsts.MoveLeftByte))
-                baseController.Movement.Move(-1);
+                baseController.Move(-1);
             else
-                baseController.Movement.Move(0);
+                baseController.Move(0);
 
             if(ContainsInput(fullInput, InputConsts.JumpByte))
-                baseController.Movement.Jump();
+                baseController.Jump();
 
             if(ContainsInput(fullInput, InputConsts.JumpDownByte))
-                baseController.Movement.JumpDown();
+                baseController.JumpDown();
+
+            if(ContainsInput(fullInput,InputConsts.InterractByte))
+                baseController.Interactor.Interract();
 
             frameNum++;
         }

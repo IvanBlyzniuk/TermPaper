@@ -7,9 +7,14 @@ namespace World.Entity.Player
     public class PlayerInteractor : MonoBehaviour
     {
         private Rigidbody2D heldObject;
-        private List<GameObject> objectsToInterract = new List<GameObject>();
         private TargetJoint2D heldObjectTarget;
+        private Collider2D heldObjectCollider;
+        private List<GameObject> objectsToInterract = new List<GameObject>();
+        Coroutine turningCoroutine;
+        
 
+        [SerializeField]
+        private Collider2D myCollider;
         [SerializeField]
         private Transform heldObjectAnchor;
 
@@ -20,17 +25,13 @@ namespace World.Entity.Player
                 if (objectsToInterract.Count == 0)
                     return;
                 GameObject objectToInterract = objectsToInterract[objectsToInterract.Count - 1];
-                //objectToInterract.layer == LayerMask.NameToLayer
                 //if(objectToInterract.GetComponent<InteractiveObject>() != null)
                 {
                     heldObject = objectToInterract.GetComponent<Rigidbody2D>();
                     heldObjectTarget = objectToInterract.GetComponent<TargetJoint2D>();
+                    heldObjectCollider = objectToInterract.GetComponent<Collider2D>();
                     heldObjectTarget.enabled = true;
-                    //heldObject.gravityScale = 0;
-                    //heldObject.constraints = RigidbodyConstraints2D.FreezeRotation;
-                    //heldObject.drag = 10;
-
-                    //heldObject.transform.parent = heldObjectAnchor;
+                    heldObjectTarget.target = heldObjectAnchor.position;
 
                 }
                 //else
@@ -40,13 +41,25 @@ namespace World.Entity.Player
             }
             else
             {
-                //heldObject.gravityScale = 1;
-                //heldObject.drag = 1;
-                //heldObject.constraints = RigidbodyConstraints2D.None;
-                //heldObject.transform.parent = null;
                 heldObjectTarget.enabled = false;
                 heldObject = null;
             }
+        }
+
+        public void TurnAround()
+        {
+            if (heldObject == null)
+                return;
+            Physics2D.IgnoreCollision(myCollider,heldObjectCollider);
+            if(turningCoroutine != null)
+                StopCoroutine(turningCoroutine);
+            turningCoroutine = StartCoroutine(ReactivateCollisions(0.1f,heldObjectCollider));
+        }
+
+        private IEnumerator ReactivateCollisions(float delay, Collider2D collider)
+        {
+            yield return new WaitForSeconds(delay);
+            Physics2D.IgnoreCollision(myCollider, collider,false);
         }
 
         void Update()
@@ -54,14 +67,6 @@ namespace World.Entity.Player
             if (heldObject == null)
                 return;
             heldObjectTarget.target = heldObjectAnchor.position;
-            //if (Vector2.Distance(heldObject.transform.position, heldObjectAnchor.position) > 0.1f)
-            //{
-            //    Vector2 moveDirection = heldObjectAnchor.position - heldObject.transform.position;
-            //    heldObject.AddForce(moveDirection * 15);
-            //}
-            //give speed and angular speed proportional to distance to correct pos
-            //heldObject.transform.position = Vector2.Lerp(heldObject.transform.position, heldObjectAnchor.transform.position, 0.3f);
-            //heldObject.transform.up = Vector2.Lerp(heldObject.transform.up, Vector2.up, 0.3f);
         }
 
         public void OnTriggerEnter2D(Collider2D collision)

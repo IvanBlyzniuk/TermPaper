@@ -13,7 +13,6 @@ namespace World.Entity.Player
         [SerializeField]
         private Transform initialPosition;
         
-        public PlayerMovement Movement => movement;
         public PlayerInteractor Interactor => interactor;
         public Transform InitialPosition { get => initialPosition; set => initialPosition = value; }
 
@@ -25,6 +24,32 @@ namespace World.Entity.Player
                 return;
             }
             transform.position = InitialPosition.position;
+        }
+
+        public void Move(float speedMultiplier)
+        {
+            movement.Move(speedMultiplier);
+            if(speedMultiplier > 0 && !movement.FacingRight)
+            {
+                movement.TurnRight();
+                interactor.TurnAround();
+            }
+            else if(speedMultiplier < 0 && movement.FacingRight)
+            {
+                movement.TurnLeft();
+                interactor.TurnAround();
+            }
+
+        }
+
+        public void Jump()
+        {
+            movement.Jump();
+        }
+
+        public void JumpDown()
+        {
+            movement.JumpDown();
         }
     }
 }
