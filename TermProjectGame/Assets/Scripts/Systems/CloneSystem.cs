@@ -60,7 +60,26 @@ namespace Systems
             currentAttemptInputs = new List<byte>();
         }
 
-        
+        public void RemoveClones()
+        {
+            foreach (CloneController clone in clones)
+            {
+                GameObject.Destroy(clone.gameObject);
+            }
+            clones.Clear();
+        }
+
+        public void ResetInputs()
+        {
+            currentAttemptInputs.Clear();
+            currentFrameInputs = 0;
+        }
+
+        public void ChangeCheckpoint(Transform newCheckpoint)
+        {
+            currentCheckpoint = newCheckpoint;
+            RemoveClones();
+        }
 
         private void FixedUpdate()
         {

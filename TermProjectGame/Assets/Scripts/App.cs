@@ -12,10 +12,13 @@ public class App : MonoBehaviour
     private InputSystem inputSystem;
     [SerializeField]
     private CloneSystem cloneSystem;
+    [SerializeField]
+    private RoomSystem roomSystem;
 
     private void Awake()
     {
-        inputSystem.Init(objectsContainer.Player,cloneSystem);
+        inputSystem.Init(objectsContainer.Player,cloneSystem,roomSystem);
+        roomSystem.Init(cloneSystem,objectsContainer.Rooms, objectsContainer.Player);
         cloneSystem.Init();
     }
 }

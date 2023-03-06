@@ -8,14 +8,17 @@ namespace Systems
     public class InputSystem : MonoBehaviour
     {
         private CloneSystem cloneSystem;
+        private RoomSystem roomSystem;
         private PlayerController player;
         private bool jumpPressed;
         private bool interactPressed;
         private bool resetPressed;
-        public void Init(PlayerController player, CloneSystem cloneSystem)
+        private bool removeClonesPressed;
+        public void Init(PlayerController player, CloneSystem cloneSystem, RoomSystem roomSystem)
         {
             this.player = player;
             this.cloneSystem = cloneSystem;
+            this.roomSystem = roomSystem;
             jumpPressed = false;
         }
 
@@ -27,6 +30,8 @@ namespace Systems
                 resetPressed = true;
             if (Input.GetButtonDown("Interract"))
                 interactPressed = true;
+            if (Input.GetButtonDown("Remove Clones"))
+                removeClonesPressed = true;
         }
 
         private void FixedUpdate()
@@ -66,6 +71,7 @@ namespace Systems
             {
                 cloneSystem.ResetClones();
                 player.ResetPosition();
+                roomSystem.ResetRoom();
                 resetPressed = false;
             }
             if (interactPressed)
@@ -73,6 +79,12 @@ namespace Systems
                 player.Interactor.Interract();
                 cloneSystem.Interract();
                 interactPressed = false;
+            }
+            if(removeClonesPressed)
+            {
+                cloneSystem.RemoveClones();
+                removeClonesPressed = false;
+
             }
         }
     }
