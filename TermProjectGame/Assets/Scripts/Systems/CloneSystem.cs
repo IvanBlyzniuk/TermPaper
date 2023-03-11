@@ -6,7 +6,7 @@ using World.Entity.Clone;
 
 namespace Systems
 {
-    public class CloneSystem : MonoBehaviour
+    public class CloneSystem : MonoBehaviour, ICloneSystem
     {
         [SerializeField]
         private Transform currentCheckpoint; //TODO remove later
@@ -55,6 +55,7 @@ namespace Systems
             clones.Add(currentClone);
             foreach (CloneController clone in clones)
             {
+                clone.gameObject.SetActive(true);
                 clone.ResetPosition();
             }
             currentAttemptInputs = new List<byte>();
@@ -62,6 +63,8 @@ namespace Systems
 
         public void RemoveClones()
         {
+            if (clones == null)
+                return;
             foreach (CloneController clone in clones)
             {
                 GameObject.Destroy(clone.gameObject);
@@ -79,6 +82,11 @@ namespace Systems
         {
             currentCheckpoint = newCheckpoint;
             RemoveClones();
+        }
+
+        public void KillClone(CloneController clone)
+        {
+            clone.gameObject.SetActive(false);
         }
 
         private void FixedUpdate()

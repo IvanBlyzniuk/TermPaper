@@ -34,6 +34,11 @@ namespace Systems
                 removeClonesPressed = true;
         }
 
+        private void OnDisable()
+        {
+            player.Move(0);
+        }
+
         private void FixedUpdate()
         {
             float horizontalInput = Input.GetAxis("Horizontal");

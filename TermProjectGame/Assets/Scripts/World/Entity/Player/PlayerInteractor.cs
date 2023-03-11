@@ -20,7 +20,7 @@ namespace World.Entity.Player
 
         public void Interract()
         {
-            if (heldObject == null)
+            if (!TryDropObject())
             {
                 if (objectsToInterract.Count == 0)
                     return;
@@ -39,11 +39,15 @@ namespace World.Entity.Player
                 //    button.Interract();
                 //}
             }
-            else
-            {
-                heldObjectTarget.enabled = false;
-                heldObject = null;
-            }
+        }
+
+        public bool TryDropObject()
+        {
+            if (heldObject == null)
+                return false;
+            heldObjectTarget.enabled = false;
+            heldObject = null;
+            return true;
         }
 
         public void TurnAround()

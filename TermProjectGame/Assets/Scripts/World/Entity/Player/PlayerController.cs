@@ -23,6 +23,7 @@ namespace World.Entity.Player
                 Debug.Log(gameObject.name);
                 return;
             }
+            interactor.TryDropObject();
             transform.position = InitialPosition.position;
         }
 

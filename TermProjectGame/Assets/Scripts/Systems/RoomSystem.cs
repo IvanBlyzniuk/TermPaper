@@ -9,28 +9,74 @@ namespace Systems
     public class RoomSystem : MonoBehaviour, IRoomSystem
     {
         private CloneSystem cloneSystem;
+        private InputSystem inputSystem;
+        private HudSystem hudSystem;
         private Room currentRoom;
         private PlayerController player;
-        public void Init(CloneSystem cloneSystem, List<Room> rooms, PlayerController player)
+        [SerializeField]
+        private float fadeoutTime;
+
+        public Room CurrentRoom
+        {
+            get { return currentRoom; }
+            set
+            {
+                currentRoom = value;
+                player.InitialPosition = currentRoom.CheckPoint;
+                player.transform.position = currentRoom.CheckPoint.position;
+                cloneSystem.ChangeCheckpoint(currentRoom.CheckPoint);
+            }
+        }
+
+        public void Init(CloneSystem cloneSystem, InputSystem inputSystem, HudSystem hudSystem, List<Room> rooms, PlayerController player)
         {
             this.cloneSystem = cloneSystem;
+            this.inputSystem = inputSystem;
+            this.hudSystem = hudSystem;
             this.player = player;
             foreach (Room room in rooms)
             {
-                room.Init(this);
+                room.Init(this, cloneSystem);
             }
+            CurrentRoom = rooms[0]; //Maybe add firstRoom field for convenience
         }
 
         public void ResetRoom()
         {
-            currentRoom.ResetObjects();
+            if(currentRoom != null)
+                currentRoom.ResetObjects();
         }
 
-        public void NotifyRoomChanged(Room currentRoom)
+        private IEnumerator ChangeRoom(Room nextRoom)
         {
-            this.currentRoom = currentRoom;
-            player.InitialPosition = currentRoom.CheckPoint;
-            cloneSystem.ChangeCheckpoint(currentRoom.CheckPoint);
+            inputSystem.gameObject.SetActive(false);
+            float timePassed = 0;
+            while (timePassed < fadeoutTime)
+            {
+                timePassed += Time.deltaTime;
+                hudSystem.BlackOverlayAlpha = timePassed / fadeoutTime;
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+            CurrentRoom = nextRoom;
+            timePassed = 0;
+            while (timePassed < fadeoutTime)
+            {
+                timePassed += Time.deltaTime;
+                hudSystem.BlackOverlayAlpha = 1.0f - timePassed / fadeoutTime;
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+            inputSystem.gameObject.SetActive(true);
+        }
+
+        public void NotifyRoomChanged(Room nextRoom)
+        {
+            if(nextRoom == null)
+            {
+                Debug.Log("Starting next level");
+                return;
+            }
+            StartCoroutine(ChangeRoom(nextRoom));
+            
         }
     }
 }
