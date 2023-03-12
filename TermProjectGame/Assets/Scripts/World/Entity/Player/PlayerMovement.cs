@@ -59,7 +59,6 @@ namespace World.Entity.Player
                     target = rigidBody.velocity;
                 rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, target, ref changeVelocity, movementParams.smoothTime);
             }
-            //Debug.Log(rigidBody.velocity.magnitude);
         }
 
         public void TurnLeft()
