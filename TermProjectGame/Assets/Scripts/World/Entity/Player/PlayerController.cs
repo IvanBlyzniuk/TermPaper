@@ -29,6 +29,8 @@ namespace World.Entity.Player
 
         public void Move(float speedMultiplier)
         {
+            if (movement == null)
+                return;
             movement.Move(speedMultiplier);
             if(speedMultiplier > 0 && !movement.FacingRight)
             {

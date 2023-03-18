@@ -10,7 +10,10 @@ namespace World.InteractiveObjects.Actuators
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Activate();
+            if(collisionCount == 0)
+            {
+                Activate();
+            }
             collisionCount++;
         }
 

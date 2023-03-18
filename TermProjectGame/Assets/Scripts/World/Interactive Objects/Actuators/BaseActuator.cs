@@ -10,6 +10,14 @@ namespace World.InteractiveObjects.Actuators
         [SerializeField]
         private List<BaseActivable> activables;
 
+        private void Start()
+        {
+            foreach (var activable in activables)
+            {
+                activable.AddActuator();
+            }
+        }
+
         public void Activate()
         {
            foreach (var activable in activables)

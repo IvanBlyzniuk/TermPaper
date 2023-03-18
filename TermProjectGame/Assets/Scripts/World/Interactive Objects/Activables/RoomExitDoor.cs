@@ -9,6 +9,7 @@ namespace World.InteractiveObjects.Activables
     public class RoomExitDoor : BaseActivable
     {
         private Room room;
+        [SerializeField]
         private bool isOpen;
         [SerializeField]
         private Animator animator;
@@ -16,17 +17,16 @@ namespace World.InteractiveObjects.Activables
         public void Init(Room room)
         {
             this.room = room;
-            isOpen = false;
-            animator.SetBool("isOpen", false);
+            animator.SetBool("isOpen", isOpen);
         }
 
-        public override void Activate()
+        protected override void ActivateBehaviour()
         {
             isOpen = true;
             animator.SetBool("isOpen", true);
         }
 
-        public override void Deactivate()
+        protected override void DeactivateBehaviour()
         {
             isOpen = false;
             animator.SetBool("isOpen", false);
