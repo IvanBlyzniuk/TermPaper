@@ -10,10 +10,10 @@ namespace World.Entity.Clone
     {
         [SerializeField]
         private PlayerController baseController;
-        private List<byte> inputs;
+        private byte[] inputs;
         private int frameNum;
         
-        public void Init(List<byte> inputs, Transform currentCheckpoint)
+        public void Init(byte[] inputs, Transform currentCheckpoint)
         {
             this.inputs = inputs;
             frameNum = 0;
@@ -22,7 +22,7 @@ namespace World.Entity.Clone
 
         private void FixedUpdate()
         {
-            if(frameNum >= inputs.Count)
+            if(frameNum >= inputs.Length)
             {
                 baseController.Move(0);
                 return;

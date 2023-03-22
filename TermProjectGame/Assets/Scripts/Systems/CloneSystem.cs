@@ -51,7 +51,7 @@ namespace Systems
         public void ResetClones()
         {
             CloneController currentClone = Instantiate(clonePrefab).GetComponent<CloneController>();
-            currentClone.Init(currentAttemptInputs, currentCheckpoint);
+            currentClone.Init(currentAttemptInputs.ToArray(), currentCheckpoint);
             clones.Add(currentClone);
             foreach (CloneController clone in clones)
             {

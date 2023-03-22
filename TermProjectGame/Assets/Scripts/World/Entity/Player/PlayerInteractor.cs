@@ -32,7 +32,7 @@ namespace World.Entity.Player
                     heldObjectCollider = objectToInterract.GetComponent<Collider2D>();
                     heldObjectTarget.enabled = true;
                     heldObjectTarget.target = heldObjectAnchor.position;
-
+                    heldObject.constraints = RigidbodyConstraints2D.FreezeRotation;
                 }
                 //else
                 //{
@@ -46,6 +46,7 @@ namespace World.Entity.Player
             if (heldObject == null)
                 return false;
             heldObjectTarget.enabled = false;
+            heldObject.constraints = RigidbodyConstraints2D.None;
             heldObject = null;
             return true;
         }
