@@ -92,6 +92,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1446485258397954777}
     m_Modifications:
+    - target: {fileID: 1075862374410974859, guid: a955b54ed5d774d4f851906911fedd4e, type: 3}
+      propertyPath: fadeoutTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1494625795121260024, guid: a955b54ed5d774d4f851906911fedd4e, type: 3}
       propertyPath: m_RootOrder
       value: 2

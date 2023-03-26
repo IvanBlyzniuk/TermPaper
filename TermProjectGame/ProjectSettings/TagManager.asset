@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Room Background
+    uniqueID: 2139759897
+    locked: 0
+  - name: Room Ground
+    uniqueID: 3488958897
+    locked: 0
+  - name: Room Objects
+    uniqueID: 809935509
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

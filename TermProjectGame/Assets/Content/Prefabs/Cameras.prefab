@@ -89,7 +89,7 @@ MonoBehaviour:
   m_LookaheadTime: 1
   m_LookaheadSmoothing: 5.2
   m_LookaheadIgnoreY: 0
-  m_XDamping: 1
+  m_XDamping: 2
   m_YDamping: 2.65
   m_ZDamping: 1
   m_TargetMovementOnly: 1
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_MaximumDistance: 5000
   m_MinimumFOV: 3
   m_MaximumFOV: 60
-  m_MinimumOrthoSize: 8
-  m_MaximumOrthoSize: 8
+  m_MinimumOrthoSize: 6
+  m_MaximumOrthoSize: 6
 --- !u!1 &1858134300
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858134300}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.030685, y: -5.4577613, z: -10.963914}
+  m_LocalPosition: {x: -8.030685, y: -5.5277615, z: -10.963914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1907015410}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 8
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BoundingShape2D: {fileID: 0}
-  m_Damping: 0.5
+  m_Damping: 5
   m_MaxWindowSize: -1
 --- !u!1 &1907015409
 GameObject:
@@ -228,7 +228,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907015409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.030685, y: -5.4577613, z: 0.03608622}
+  m_LocalPosition: {x: -8.030685, y: -5.5277615, z: 0.03608622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -281,7 +281,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6701655659738798414}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.030685, y: -5.4577613, z: -10.963914}
+  m_LocalPosition: {x: -7.9769526, y: -4.010021, z: -10.963914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -315,7 +315,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
