@@ -20,13 +20,13 @@ namespace World.InteractiveObjects.Activables
             animator.SetBool("isOpen", isOpen);
         }
 
-        protected override void ActivateBehaviour()
+        protected override void OnActivate()
         {
             isOpen = true;
             animator.SetBool("isOpen", true);
         }
 
-        protected override void DeactivateBehaviour()
+        protected override void OnDeactivate()
         {
             isOpen = false;
             animator.SetBool("isOpen", false);

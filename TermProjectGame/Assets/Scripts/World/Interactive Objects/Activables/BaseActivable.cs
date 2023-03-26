@@ -9,8 +9,10 @@ namespace World.InteractiveObjects.Activables
     {
         private int inputCount = 0;
         private int activeCount = 0;
-        protected abstract void ActivateBehaviour();
-        protected abstract void DeactivateBehaviour();
+        protected abstract void OnActivate();
+        protected abstract void OnDeactivate();
+
+        public virtual void OnReset() { }
 
         public void AddActuator()
         {
@@ -21,13 +23,13 @@ namespace World.InteractiveObjects.Activables
         {
             activeCount++;
             if (inputCount == activeCount)
-                ActivateBehaviour();
+                OnActivate();
         }
 
         public void Deactivate()
         {
             if(inputCount == activeCount)
-                DeactivateBehaviour();
+                OnDeactivate();
             activeCount--;
         }
     }

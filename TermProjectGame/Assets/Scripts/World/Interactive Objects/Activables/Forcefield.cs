@@ -12,14 +12,14 @@ namespace World.InteractiveObjects.Activables
         private SpriteRenderer spriteRenderer;
         [SerializeField]
         private BoxCollider2D myCollider;
-        protected override void ActivateBehaviour()
+        protected override void OnActivate()
         {
             myCollider.enabled = false;
             StopAllCoroutines();
             StartCoroutine(makeSpriteTransparent());
         }
 
-        protected override void DeactivateBehaviour()
+        protected override void OnDeactivate()
         {
             myCollider.enabled = true;
             StopAllCoroutines();

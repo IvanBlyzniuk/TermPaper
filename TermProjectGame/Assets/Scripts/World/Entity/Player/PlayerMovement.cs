@@ -27,12 +27,13 @@ namespace World.Entity.Player
             RaycastHit2D groundCheckHit = GroundCheck();
             if (speedMultiplier != 0)
             {
+
                 target = new Vector2(movementParams.moveSpeed * speedMultiplier, rigidBody.velocity.y);
                 rigidBody.sharedMaterial = movementParams.noFrictionMaterial;
                 if (stairsCollisionsCount > 0  && groundCheckHit && groundCheckHit.collider.gameObject.layer == LayerMask.NameToLayer("Stairs"))
                 {
                     target = Vector2.Perpendicular(-groundCheckHit.normal).normalized * movementParams.moveSpeed * speedMultiplier;
-                    Debug.DrawRay(transform.position, target, Color.green);
+                    //Debug.DrawRay(transform.position, target, Color.green);
                     rigidBody.velocity = target;
                 }
                 else

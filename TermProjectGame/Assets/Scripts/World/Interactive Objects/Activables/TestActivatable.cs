@@ -11,12 +11,12 @@ namespace World.InteractiveObjects.Activables
         [SerializeField]
         private Sprite activeSprite;
 
-        protected override void ActivateBehaviour()
+        protected override void OnActivate()
         {
             GetComponent<SpriteRenderer>().sprite = activeSprite;
         }
 
-        protected override void DeactivateBehaviour()
+        protected override void OnDeactivate()
         {
             GetComponent<SpriteRenderer>().sprite = baseSprite;
         }

@@ -11,7 +11,7 @@ namespace World.InteractiveObjects.Activables
         private WireScriptableObject wireSO;
         private Tilemap tilemap;
 
-        protected override void ActivateBehaviour()
+        protected override void OnActivate()
         {
             foreach(var tilePair in wireSO.tilePairs)
             {
@@ -19,7 +19,7 @@ namespace World.InteractiveObjects.Activables
             }
         }
 
-        protected override void DeactivateBehaviour()
+        protected override void OnDeactivate()
         {
             foreach (var tilePair in wireSO.tilePairs)
             {
