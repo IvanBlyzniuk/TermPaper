@@ -53,3 +53,6 @@ TagManager:
   - name: Player
     uniqueID: 2039105091
     locked: 0
+  - name: Wires
+    uniqueID: 1549099705
+    locked: 0

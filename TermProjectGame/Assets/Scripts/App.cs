@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using World;
 using Systems;
+using Cinemachine;
 
 public class App : MonoBehaviour
 {
+    [SerializeField]
+    private CinemachineVirtualCamera virtualCamera;
     [SerializeField]
     private ObjectsContainer objectsContainer;
     [SerializeField]
@@ -20,7 +23,7 @@ public class App : MonoBehaviour
     private void Awake()
     {
         inputSystem.Init(objectsContainer.Player,cloneSystem,roomSystem);
-        roomSystem.Init(cloneSystem, inputSystem, hudSystem,objectsContainer.Rooms, objectsContainer.Player);
+        roomSystem.Init(cloneSystem, inputSystem, hudSystem,objectsContainer.Rooms, objectsContainer.Player, virtualCamera);
         cloneSystem.Init();
         hudSystem.Init(objectsContainer.BlackHudOverlay);
     }

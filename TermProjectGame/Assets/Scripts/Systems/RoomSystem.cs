@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Systems
         private HudSystem hudSystem;
         private Room currentRoom;
         private PlayerController player;
+        private CinemachineVirtualCamera mainCamera;
         [SerializeField]
         private float fadeoutTime;
 
@@ -28,12 +30,13 @@ namespace Systems
             }
         }
 
-        public void Init(CloneSystem cloneSystem, InputSystem inputSystem, HudSystem hudSystem, List<Room> rooms, PlayerController player)
+        public void Init(CloneSystem cloneSystem, InputSystem inputSystem, HudSystem hudSystem, List<Room> rooms, PlayerController player, CinemachineVirtualCamera mainCamera)
         {
             this.cloneSystem = cloneSystem;
             this.inputSystem = inputSystem;
             this.hudSystem = hudSystem;
             this.player = player;
+            this.mainCamera = mainCamera;
             foreach (Room room in rooms)
             {
                 room.Init(this, cloneSystem);
@@ -59,6 +62,7 @@ namespace Systems
             }
             CurrentRoom = nextRoom;
             timePassed = 0;
+            yield return new WaitForSeconds(0.5f);
             while (timePassed < fadeoutTime)
             {
                 timePassed += Time.deltaTime;
@@ -66,6 +70,8 @@ namespace Systems
                 yield return new WaitForSeconds(Time.deltaTime);
             }
             inputSystem.gameObject.SetActive(true);
+            cloneSystem.RemoveClones();
+            cloneSystem.ResetInputs();
         }
 
         public void NotifyRoomChanged(Room nextRoom)
