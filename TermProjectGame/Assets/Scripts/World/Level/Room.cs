@@ -21,7 +21,10 @@ namespace World.Level.Room
         private RoomExitDoor exitDoor;
         [SerializeField]
         private Room nextRoom;
+        [SerializeField]
+        private int maxClonesCount;
 
+        public int MaxClonesCount { get => maxClonesCount; }
         public Transform CheckPoint { get => checkPoint; }
 
         public void Init(IRoomSystem roomSystem, ICloneSystem cloneSystem)
@@ -43,17 +46,5 @@ namespace World.Level.Room
         {
             roomSystem.NotifyRoomChanged(nextRoom);
         }
-
-        //public void OnCollisionEnter2D(Collision2D collision)
-        //{
-        //    CloneController clone = collision.gameObject.GetComponent<CloneController>();
-        //    if (clone != null)
-        //    {
-        //        //cloneSystem.KillClone(clone);
-        //        return;
-        //    }
-        //    //TODO:close door
-        //    roomSystem.NotifyRoomChanged(this);
-        //}
     }
 }

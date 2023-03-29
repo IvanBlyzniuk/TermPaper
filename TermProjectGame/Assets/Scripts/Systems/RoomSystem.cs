@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using World.Entity.Player;
 using World.Level.Room;
 
@@ -14,7 +15,9 @@ namespace Systems
         private HudSystem hudSystem;
         private Room currentRoom;
         private PlayerController player;
-        private CinemachineVirtualCamera mainCamera;
+        private List<Room> rooms;
+        [SerializeField]
+        private string nextLevelName;
         [SerializeField]
         private float fadeoutTime;
 
@@ -27,16 +30,17 @@ namespace Systems
                 player.InitialPosition = currentRoom.CheckPoint;
                 player.transform.position = currentRoom.CheckPoint.position;
                 cloneSystem.ChangeCheckpoint(currentRoom.CheckPoint);
+                cloneSystem.MaxClonesCount = currentRoom.MaxClonesCount;
             }
         }
 
-        public void Init(CloneSystem cloneSystem, InputSystem inputSystem, HudSystem hudSystem, List<Room> rooms, PlayerController player, CinemachineVirtualCamera mainCamera)
+        public void Init(CloneSystem cloneSystem, InputSystem inputSystem, HudSystem hudSystem, List<Room> rooms, PlayerController player)
         {
             this.cloneSystem = cloneSystem;
             this.inputSystem = inputSystem;
             this.hudSystem = hudSystem;
             this.player = player;
-            this.mainCamera = mainCamera;
+            this.rooms = rooms;
             foreach (Room room in rooms)
             {
                 room.Init(this, cloneSystem);
@@ -78,11 +82,28 @@ namespace Systems
         {
             if(nextRoom == null)
             {
-                Debug.Log("Starting next level");
+                StartCoroutine(ChangeScene());
                 return;
             }
+            Debug.Log($"Room #{rooms.IndexOf(nextRoom)}");
+            PlayerPrefs.SetInt("currentRoom", rooms.IndexOf(nextRoom));
             StartCoroutine(ChangeRoom(nextRoom));
-            
+        }
+
+        private IEnumerator ChangeScene()
+        {
+            inputSystem.gameObject.SetActive(false);
+            Debug.Log("Starting next level");
+            PlayerPrefs.SetString("currentLevel", nextLevelName);
+            PlayerPrefs.SetInt("currentRoom", 0);
+            float timePassed = 0;
+            while (timePassed < fadeoutTime * 2)
+            {
+                timePassed += Time.deltaTime;
+                hudSystem.BlackOverlayAlpha = timePassed / fadeoutTime;
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+            SceneManager.LoadScene(nextLevelName);
         }
     }
 }

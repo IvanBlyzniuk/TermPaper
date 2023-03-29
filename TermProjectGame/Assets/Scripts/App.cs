@@ -8,8 +8,6 @@ using Cinemachine;
 public class App : MonoBehaviour
 {
     [SerializeField]
-    private CinemachineVirtualCamera virtualCamera;
-    [SerializeField]
     private ObjectsContainer objectsContainer;
     [SerializeField]
     private InputSystem inputSystem;
@@ -23,7 +21,7 @@ public class App : MonoBehaviour
     private void Awake()
     {
         inputSystem.Init(objectsContainer.Player,cloneSystem,roomSystem);
-        roomSystem.Init(cloneSystem, inputSystem, hudSystem,objectsContainer.Rooms, objectsContainer.Player, virtualCamera);
+        roomSystem.Init(cloneSystem, inputSystem, hudSystem,objectsContainer.Rooms, objectsContainer.Player);
         cloneSystem.Init();
         hudSystem.Init(objectsContainer.BlackHudOverlay);
     }

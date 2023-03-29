@@ -58,5 +58,10 @@ namespace World.Entity.Clone
             baseController.ResetPosition();
             frameNum = 0;
         }
+
+        public void DropItem()
+        {
+            baseController.Interactor.TryDropObject();
+        }
     }
 }

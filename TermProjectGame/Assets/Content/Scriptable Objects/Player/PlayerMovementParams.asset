@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerMovementParams
   m_EditorClassIdentifier: 
   smoothTime: 0.15
-  jumpSpeed: 7
+  jumpSpeed: 8
   moveSpeed: 5
   maxGroundCheckDistance: 0.1
   jumpMask:

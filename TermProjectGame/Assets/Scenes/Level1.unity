@@ -2995,6 +2995,10 @@ PrefabInstance:
       propertyPath: nextRoom
       value: 
       objectReference: {fileID: 1541200895}
+    - target: {fileID: 6255645176014135420, guid: 635a44f69649c2a4ab3ac1656ee7c5ee, type: 3}
+      propertyPath: maxClonesCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6255645176014135421, guid: 635a44f69649c2a4ab3ac1656ee7c5ee, type: 3}
       propertyPath: m_Name
       value: Room 1
@@ -7327,6 +7331,10 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[82].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 6255645176014135420, guid: 635a44f69649c2a4ab3ac1656ee7c5ee, type: 3}
+      propertyPath: maxClonesCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6255645176014135421, guid: 635a44f69649c2a4ab3ac1656ee7c5ee, type: 3}
       propertyPath: m_Name
       value: Room 4
@@ -9189,6 +9197,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1027159026674524325, guid: 4f6614416132a5644bdab42f61ea046d, type: 3}
+      propertyPath: nextLevelName
+      value: Level2
+      objectReference: {fileID: 0}
     - target: {fileID: 1446485257991047512, guid: 4f6614416132a5644bdab42f61ea046d, type: 3}
       propertyPath: m_Name
       value: App
@@ -15194,6 +15206,10 @@ PrefabInstance:
       propertyPath: nextRoom
       value: 
       objectReference: {fileID: 90997037}
+    - target: {fileID: 6255645176014135420, guid: 635a44f69649c2a4ab3ac1656ee7c5ee, type: 3}
+      propertyPath: maxClonesCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6255645176014135421, guid: 635a44f69649c2a4ab3ac1656ee7c5ee, type: 3}
       propertyPath: m_Name
       value: Room 3
@@ -20776,6 +20792,10 @@ PrefabInstance:
       propertyPath: nextRoom
       value: 
       objectReference: {fileID: 383491696}
+    - target: {fileID: 6255645176014135420, guid: 635a44f69649c2a4ab3ac1656ee7c5ee, type: 3}
+      propertyPath: maxClonesCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6255645176014135421, guid: 635a44f69649c2a4ab3ac1656ee7c5ee, type: 3}
       propertyPath: m_Name
       value: Room 2

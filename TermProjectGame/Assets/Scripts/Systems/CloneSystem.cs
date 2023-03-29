@@ -14,14 +14,18 @@ namespace Systems
         [SerializeField]
         private GameObject clonePrefab;
 
-        private List<CloneController> clones;
+        private Queue<CloneController> clones;
         private List<byte> currentAttemptInputs;
         private byte currentFrameInputs;
+
+        private int maxClonesCount;
+
+        public int MaxClonesCount { get => maxClonesCount; set => maxClonesCount = value; }
 
         public void Init()
         {
             currentAttemptInputs = new List<byte>();
-            clones = new List<CloneController>();
+            clones = new Queue<CloneController>();
             currentFrameInputs = 0;
         }
 
@@ -50,9 +54,18 @@ namespace Systems
 
         public void ResetClones()
         {
+            if(MaxClonesCount == 0) 
+                return;
             CloneController currentClone = Instantiate(clonePrefab).GetComponent<CloneController>();
             currentClone.Init(currentAttemptInputs.ToArray(), currentCheckpoint);
-            clones.Add(currentClone);
+            clones.Enqueue(currentClone);
+            //clones.Add(currentClone);
+            if(clones.Count > MaxClonesCount)
+            {
+                CloneController cloneToRenove = clones.Dequeue();
+                Destroy(cloneToRenove.gameObject);
+            }
+                
             foreach (CloneController clone in clones)
             {
                 clone.gameObject.SetActive(true);
@@ -67,7 +80,8 @@ namespace Systems
                 return;
             foreach (CloneController clone in clones)
             {
-                GameObject.Destroy(clone.gameObject);
+                clone.DropItem();
+                Destroy(clone.gameObject);
             }
             clones.Clear();
         }
