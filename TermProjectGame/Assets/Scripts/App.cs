@@ -20,9 +20,9 @@ public class App : MonoBehaviour
 
     private void Awake()
     {
-        inputSystem.Init(objectsContainer.Player,cloneSystem,roomSystem);
-        roomSystem.Init(cloneSystem, inputSystem, hudSystem,objectsContainer.Rooms, objectsContainer.Player);
-        cloneSystem.Init();
-        hudSystem.Init(objectsContainer.BlackHudOverlay);
+        inputSystem.Init(objectsContainer.Player,cloneSystem,roomSystem, hudSystem);
+        hudSystem.Init(objectsContainer.BlackHudOverlay, objectsContainer.PauseScreen, objectsContainer.CloneCountText);
+        cloneSystem.Init(hudSystem);
+        roomSystem.Init(cloneSystem, inputSystem, hudSystem, objectsContainer.Rooms, objectsContainer.Player);
     }
 }

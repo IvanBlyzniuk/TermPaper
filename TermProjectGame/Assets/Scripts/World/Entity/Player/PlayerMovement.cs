@@ -11,6 +11,7 @@ namespace World.Entity.Player
         private List<Collider2D> ignoredPlatforms = new List<Collider2D>();
         private Vector2 changeVelocity = Vector2.zero;
         private bool facingRight = true;
+        private AudioSource audioSource;
 
         [SerializeField]
         private PlayerMovementParamsSO movementParams;
@@ -18,8 +19,17 @@ namespace World.Entity.Player
         private Rigidbody2D rigidBody;
         [SerializeField]
         private BoxCollider2D playerCollider;
+        [SerializeField]
+        private List<AudioClip> walkingSounds;
+        [SerializeField]
+        private AudioClip jumpSound;
 
         public bool FacingRight => facingRight;
+
+        private void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
         public void Move(float speedMultiplier)
         {
@@ -33,17 +43,17 @@ namespace World.Entity.Player
                 if (stairsCollisionsCount > 0  && groundCheckHit && groundCheckHit.collider.gameObject.layer == LayerMask.NameToLayer("Stairs"))
                 {
                     target = Vector2.Perpendicular(-groundCheckHit.normal).normalized * movementParams.moveSpeed * speedMultiplier;
-                    //Debug.DrawRay(transform.position, target, Color.green);
                     rigidBody.velocity = target;
                 }
                 else
                 {
                     rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, target, ref changeVelocity, movementParams.smoothTime);
                 }
-                //if (speedMultiplier < 0)
-                    
-                //else
-                    
+                
+                if(groundCheckHit && !audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(walkingSounds[UnityEngine.Random.Range(0,walkingSounds.Count)]);
+                }
             }
             else
             {
@@ -79,6 +89,7 @@ namespace World.Entity.Player
             if(GroundCheck())
             {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, movementParams.jumpSpeed);
+                audioSource.PlayOneShot(jumpSound);
             }
                 
         }

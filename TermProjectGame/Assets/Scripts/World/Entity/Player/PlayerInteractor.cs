@@ -10,13 +10,21 @@ namespace World.Entity.Player
         private TargetJoint2D heldObjectTarget;
         private Collider2D heldObjectCollider;
         private List<GameObject> objectsToInterract = new List<GameObject>();
-        Coroutine turningCoroutine;
+        private Coroutine turningCoroutine;
+        private AudioSource audioSource;
         
 
         [SerializeField]
         private Collider2D myCollider;
         [SerializeField]
         private Transform heldObjectAnchor;
+        [SerializeField]
+        private AudioClip interactSound;
+
+        private void Awake()
+        {
+            audioSource = GetComponentInParent<AudioSource>();
+        }
 
         public void Interract()
         {
@@ -25,19 +33,13 @@ namespace World.Entity.Player
                 if (objectsToInterract.Count == 0)
                     return;
                 GameObject objectToInterract = objectsToInterract[objectsToInterract.Count - 1];
-                //if(objectToInterract.GetComponent<InteractiveObject>() != null)
-                {
-                    heldObject = objectToInterract.GetComponent<Rigidbody2D>();
-                    heldObjectTarget = objectToInterract.GetComponent<TargetJoint2D>();
-                    heldObjectCollider = objectToInterract.GetComponent<Collider2D>();
-                    heldObjectTarget.enabled = true;
-                    heldObjectTarget.target = heldObjectAnchor.position;
-                    heldObject.constraints = RigidbodyConstraints2D.FreezeRotation;
-                }
-                //else
-                //{
-                //    button.Interract();
-                //}
+                heldObject = objectToInterract.GetComponent<Rigidbody2D>();
+                heldObjectTarget = objectToInterract.GetComponent<TargetJoint2D>();
+                heldObjectCollider = objectToInterract.GetComponent<Collider2D>();
+                heldObjectTarget.enabled = true;
+                heldObjectTarget.target = heldObjectAnchor.position;
+                heldObject.constraints = RigidbodyConstraints2D.FreezeRotation;
+                audioSource.PlayOneShot(interactSound);
             }
         }
 

@@ -9,15 +9,17 @@ namespace Systems
     {
         private CloneSystem cloneSystem;
         private RoomSystem roomSystem;
+        private HudSystem hudSystem;
         private PlayerController player;
         private bool jumpPressed;
         private bool interactPressed;
         private bool resetPressed;
         private bool removeClonesPressed;
-        public void Init(PlayerController player, CloneSystem cloneSystem, RoomSystem roomSystem)
+        public void Init(PlayerController player, CloneSystem cloneSystem, RoomSystem roomSystem, HudSystem hudSystem)
         {
             this.player = player;
             this.cloneSystem = cloneSystem;
+            this.hudSystem = hudSystem;
             this.roomSystem = roomSystem;
             jumpPressed = false;
         }
@@ -32,6 +34,8 @@ namespace Systems
                 interactPressed = true;
             if (Input.GetButtonDown("Remove Clones"))
                 removeClonesPressed = true;
+            if(Input.GetButtonDown("Pause"))
+                hudSystem.Pause();
         }
 
         private void OnDisable()

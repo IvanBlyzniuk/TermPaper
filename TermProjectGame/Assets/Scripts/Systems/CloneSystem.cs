@@ -8,8 +8,7 @@ namespace Systems
 {
     public class CloneSystem : MonoBehaviour, ICloneSystem
     {
-        [SerializeField]
-        private Transform currentCheckpoint; //TODO remove later
+        private Transform currentCheckpoint;
 
         [SerializeField]
         private GameObject clonePrefab;
@@ -17,16 +16,26 @@ namespace Systems
         private Queue<CloneController> clones;
         private List<byte> currentAttemptInputs;
         private byte currentFrameInputs;
+        private HudSystem hudSystem;
 
         private int maxClonesCount;
 
-        public int MaxClonesCount { get => maxClonesCount; set => maxClonesCount = value; }
+        public int MaxClonesCount
+        { 
+            get => maxClonesCount;
+            set
+            {
+                maxClonesCount = value;
+                hudSystem.updateCloneCount(maxClonesCount);
+            }
+        }
 
-        public void Init()
+        public void Init(HudSystem hudSystem)
         {
             currentAttemptInputs = new List<byte>();
             clones = new Queue<CloneController>();
             currentFrameInputs = 0;
+            this.hudSystem = hudSystem;
         }
 
         public void JumpDown()
@@ -59,7 +68,6 @@ namespace Systems
             CloneController currentClone = Instantiate(clonePrefab).GetComponent<CloneController>();
             currentClone.Init(currentAttemptInputs.ToArray(), currentCheckpoint);
             clones.Enqueue(currentClone);
-            //clones.Add(currentClone);
             if(clones.Count > MaxClonesCount)
             {
                 CloneController cloneToRenove = clones.Dequeue();
@@ -72,6 +80,7 @@ namespace Systems
                 clone.ResetPosition();
             }
             currentAttemptInputs = new List<byte>();
+            hudSystem.updateCloneCount(MaxClonesCount - clones.Count);
         }
 
         public void RemoveClones()
@@ -84,6 +93,7 @@ namespace Systems
                 Destroy(clone.gameObject);
             }
             clones.Clear();
+            hudSystem.updateCloneCount(MaxClonesCount);
         }
 
         public void ResetInputs()

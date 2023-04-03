@@ -9,13 +9,19 @@ namespace World.InteractiveObjects.Actuators
         private int collisionCount;
         private SpriteRenderer spriteRenderer;
         private Sprite defaultSprite;
+        private AudioSource audioSource;
         [SerializeField]
         private Sprite activeSprite;
+        [SerializeField]
+        private AudioClip activateSound;
+        [SerializeField]
+        private AudioClip deactivateSound;
 
         private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             defaultSprite = spriteRenderer.sprite;
+            audioSource = GetComponent<AudioSource>();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -24,6 +30,7 @@ namespace World.InteractiveObjects.Actuators
             {
                 Activate();
                 spriteRenderer.sprite = activeSprite;
+                audioSource.PlayOneShot(activateSound);
             }
             collisionCount++;
         }
@@ -35,6 +42,7 @@ namespace World.InteractiveObjects.Actuators
             {
                 Deactivate();
                 spriteRenderer.sprite = defaultSprite;
+                audioSource.PlayOneShot(deactivateSound);
             }
                 
         }

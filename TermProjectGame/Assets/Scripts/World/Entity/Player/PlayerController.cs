@@ -6,15 +6,23 @@ namespace World.Entity.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        private AudioSource audioSource;
         [SerializeField]
         private PlayerMovement movement;
         [SerializeField]
         private PlayerInteractor interactor;
         [SerializeField]
         private Transform initialPosition;
+        [SerializeField]
+        private AudioClip timetravelSound;
         
         public PlayerInteractor Interactor => interactor;
         public Transform InitialPosition { get => initialPosition; set => initialPosition = value; }
+
+        private void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
         public void ResetPosition()
         {
@@ -23,6 +31,7 @@ namespace World.Entity.Player
                 Debug.Log(gameObject.name);
                 return;
             }
+            audioSource.PlayOneShot(timetravelSound);
             interactor.TryDropObject();
             transform.position = InitialPosition.position;
         }

@@ -45,7 +45,8 @@ namespace Systems
             {
                 room.Init(this, cloneSystem);
             }
-            CurrentRoom = rooms[0]; //Maybe add firstRoom field for convenience
+            //CurrentRoom = rooms[0]; //Maybe add firstRoom field for convenience
+            CurrentRoom = rooms[PlayerPrefs.GetInt("currentRoom")];
         }
 
         public void ResetRoom()
@@ -85,7 +86,6 @@ namespace Systems
                 StartCoroutine(ChangeScene());
                 return;
             }
-            Debug.Log($"Room #{rooms.IndexOf(nextRoom)}");
             PlayerPrefs.SetInt("currentRoom", rooms.IndexOf(nextRoom));
             StartCoroutine(ChangeRoom(nextRoom));
         }
@@ -93,7 +93,6 @@ namespace Systems
         private IEnumerator ChangeScene()
         {
             inputSystem.gameObject.SetActive(false);
-            Debug.Log("Starting next level");
             PlayerPrefs.SetString("currentLevel", nextLevelName);
             PlayerPrefs.SetInt("currentRoom", 0);
             float timePassed = 0;
