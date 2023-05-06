@@ -12,6 +12,7 @@ namespace World.Entity.Player
         private Vector2 changeVelocity = Vector2.zero;
         private bool facingRight = true;
         private AudioSource audioSource;
+        private Animator animator;
 
         [SerializeField]
         private PlayerMovementParamsSO movementParams;
@@ -29,6 +30,7 @@ namespace World.Entity.Player
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
+            animator = GetComponent<Animator>();
         }
 
         public void Move(float speedMultiplier)
@@ -70,6 +72,10 @@ namespace World.Entity.Player
                     target = rigidBody.velocity;
                 rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, target, ref changeVelocity, movementParams.smoothTime);
             }
+            if (rigidBody.velocity == Vector2.zero)
+                animator.SetBool("IsMoving", false);
+            else
+                animator.SetBool("IsMoving", true);
         }
 
         public void TurnLeft()
