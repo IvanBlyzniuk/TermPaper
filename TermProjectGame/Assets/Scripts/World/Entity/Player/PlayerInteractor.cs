@@ -12,6 +12,7 @@ namespace World.Entity.Player
         private List<GameObject> objectsToInterract = new List<GameObject>();
         private Coroutine turningCoroutine;
         private AudioSource audioSource;
+        public Animator PlayerAnimator;
         
 
         [SerializeField]
@@ -40,6 +41,12 @@ namespace World.Entity.Player
                 heldObjectTarget.target = heldObjectAnchor.position;
                 heldObject.constraints = RigidbodyConstraints2D.FreezeRotation;
                 audioSource.PlayOneShot(interactSound);
+                PlayerAnimator.SetBool("InteractionActivating", true);
+            }
+            else
+            {
+                PlayerAnimator.SetBool("IsInteracting", false);
+                PlayerAnimator.SetBool("InteractionActivating", false);
             }
         }
 

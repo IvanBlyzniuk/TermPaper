@@ -94,10 +94,16 @@ namespace World.Entity.Player
         {
             if(GroundCheck())
             {
+                animator.SetBool("IsJumping", true);
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, movementParams.jumpSpeed);
                 audioSource.PlayOneShot(jumpSound);
             }
                 
+        }
+
+        public void EndJump()
+        {
+            animator.SetBool("IsJumping", false);
         }
 
         public void JumpDown()

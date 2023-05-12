@@ -15,6 +15,7 @@ namespace Systems
         private bool interactPressed;
         private bool resetPressed;
         private bool removeClonesPressed;
+        private Coroutine resetCoroutine;
         public void Init(PlayerController player, CloneSystem cloneSystem, RoomSystem roomSystem, HudSystem hudSystem)
         {
             this.player = player;
@@ -78,9 +79,8 @@ namespace Systems
             }
             if (resetPressed)
             {
-                cloneSystem.ResetClones();
-                player.ResetPosition();
-                roomSystem.ResetRoom();
+                if(resetCoroutine == null)
+                    resetCoroutine = StartCoroutine(StartReset());
                 resetPressed = false;
             }
             if (interactPressed)
@@ -95,6 +95,16 @@ namespace Systems
                 removeClonesPressed = false;
 
             }
+        }
+
+        private IEnumerator StartReset()
+        {
+            player.StartTeleport();
+            yield return new WaitForSeconds(1);
+            cloneSystem.ResetClones();
+            player.ResetPosition();
+            roomSystem.ResetRoom();
+            resetCoroutine = null;
         }
     }
 }

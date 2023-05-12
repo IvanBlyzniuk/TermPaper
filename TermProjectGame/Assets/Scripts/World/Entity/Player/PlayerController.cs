@@ -6,6 +6,7 @@ namespace World.Entity.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        private Animator animator;
         private AudioSource audioSource;
         [SerializeField]
         private PlayerMovement movement;
@@ -22,6 +23,8 @@ namespace World.Entity.Player
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
+            animator = GetComponent<Animator>();
+            interactor.PlayerAnimator = animator;
         }
 
         public void ResetPosition()
@@ -31,9 +34,14 @@ namespace World.Entity.Player
                 Debug.Log(gameObject.name);
                 return;
             }
-            audioSource.PlayOneShot(timetravelSound);
             interactor.TryDropObject();
             transform.position = InitialPosition.position;
+        }
+
+        public void StartTeleport()
+        {
+            audioSource.PlayOneShot(timetravelSound);
+            animator.SetBool("IsTeleporting", true);
         }
 
         public void Move(float speedMultiplier)
@@ -54,6 +62,11 @@ namespace World.Entity.Player
 
         }
 
+        public void EndTeleport()
+        {
+            animator.SetBool("IsTeleporting", false);
+        }
+
         public void Jump()
         {
             movement.Jump();
@@ -62,6 +75,12 @@ namespace World.Entity.Player
         public void JumpDown()
         {
             movement.JumpDown();
+        }
+
+        public void StartInteraction()
+        {
+            animator.SetBool("IsInteracting", true);
+            animator.SetBool("InteractionActivating", false);
         }
     }
 }
